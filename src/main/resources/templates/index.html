@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>我的社区</title>
@@ -30,7 +30,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="https://github.com/login/oauth/authorize?client_id=f1dec3a5ded54ae69474&redirect_uri=http://localhost:8081/callback&scope=user&state=1">登录</a></li>
-        <li class="dropdown">
+        <li class="dropdown" th:if="${session.user != null}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">消息</a></li>
@@ -38,6 +38,9 @@
             <li><a href="#">退出登录</a></li>
 
           </ul>
+        </li>
+        <li th:unless="${session.user == null}">
+          <a href="https://github.com/login/oauth/authorize?client_id=f1dec3a5ded54ae69474&redirect_uri=http://localhost:8081/callback&scope=user&state=1">登录</a>
         </li>
       </ul>
     </div>
